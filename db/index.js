@@ -1,8 +1,8 @@
-const mysql = require('mysql-promise');
+const { Pool } = require('pg');
 const config = require('./config.js');
 
-const db = mysql();
+const pool = new Pool(config);
 
-db.configure(config);
-
-module.exports = db;
+module.exports = {
+  query: (text, params) => pool.query(text, params),
+};

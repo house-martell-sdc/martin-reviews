@@ -2,24 +2,25 @@ const dbHelpers = require('../db/dbHelpers.js');
 
 module.exports = {
   all: {
-    get: (req, res) => {
+    get: async (req, res) => {
       const { restaurantId } = req.params;
-      dbHelpers.getAllReviews(restaurantId)
-        .spread((data) => { res.status(200).send(data); })
+      await dbHelpers.getAllReviews(restaurantId)
+        .then((data) => { res.status(200).send(data); })
         .catch((err) => { console.error(err); });
     },
-    post: (req, res) => {
-      const { newReview } = req.body;
-      dbHelpers.addReview(newReview)
-        .spread(() => { res.status(200).send(); })
+    post: async (req, res) => {
+      const newReview = req.body;
+      const { restaurantId } = req.params;
+      await dbHelpers.addReview(newReview, restaurantId)
+        .then(() => { res.status(200).send('posted'); })
         .catch((err) => { console.error(err); });
     },
   },
   summary: {
-    get: (req, res) => {
+    get: async (req, res) => {
       const { restaurantId } = req.params;
-      dbHelpers.getReviewsSummary(restaurantId)
-        .spread((data) => {
+      await dbHelpers.getReviewsSummary(restaurantId)
+        .then((data) => {
           const reviewsSummary = {
             ...data[0],
             reviewsFilters: [

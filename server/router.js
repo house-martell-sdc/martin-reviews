@@ -3,7 +3,8 @@ const controller = require('./controller.js');
 
 router
   .route('/reviews/all/:restaurantId')
-  .get(controller.all.get);
+  .get(controller.all.get)
+  .post(controller.all.post);
 
 router
   .route('/reviews/summary/:restaurantId')

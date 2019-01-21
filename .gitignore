@@ -59,3 +59,10 @@ typings/
 
 # next.js build output
 .next
+
+
+# csv files
+*.csv
+stressinGet.yml
+stressinPost.yml
+newrelic.js
