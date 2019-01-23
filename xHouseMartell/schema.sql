@@ -54,6 +54,16 @@ from '/Users/Iris/martin-reviews/xHouseMartell/reviewFiltersData.csv' delimiter 
 copy reviews_detail(restaurant_id, user_id, review_text, overall_score, food_score, service_score, ambience_score, value_score, would_recommend, dined_on_date)
 from '/Users/Iris/martin-reviews/xHouseMartell/reviewsDetailData.csv' delimiter ',' csv;
 
+// CSV files moved to diff folder
+
+\copy restaurants(restaurant_name) from '/Users/Iris/CSV/restaurantData.csv' delimiter ',' csv;
+
+\copy users(username, user_initials, user_city) from '/Users/Iris/CSV/userData.csv' delimiter ',' csv;
+
+\copy review_filters(restaurant_id, review_filter) from '/Users/Iris/CSV/reviewFiltersData.csv' delimiter ',' csv;
+
+\copy reviews_detail(restaurant_id, user_id, review_text, overall_score, food_score, service_score, ambience_score, value_score, would_recommend, dined_on_date) from '/Users/Iris/CSV/reviewsDetailData.csv' delimiter ',' csv;
+
 
 
 /// Mongo schema
