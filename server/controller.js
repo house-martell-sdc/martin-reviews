@@ -5,15 +5,21 @@ module.exports = {
     get: async (req, res) => {
       const { restaurantId } = req.params;
       await dbHelpers.getAllReviews(restaurantId)
-        .then((data) => { res.status(200).send(data); })
+        .then((data) => { res.status(200).send(data.rows); })
         .catch((err) => { console.error(err); });
     },
     post: async (req, res) => {
       const newReview = req.body;
       const { restaurantId } = req.params;
-      await dbHelpers.addReview(newReview, restaurantId)
-        .then(() => { res.status(200).send('posted'); })
-        .catch((err) => { console.error(err); });
+      try {
+        await dbHelpers.addReview(newReview, restaurantId);
+        res.status(200).send('posted');
+      } catch (error) {
+        console.error(error);
+      }
+      // await dbHelpers.addReview(newReview, restaurantId)
+      //   .then(() => { res.status(200).send('posted'); })
+      //   .catch((err) => { console.error(err); });
     },
   },
   summary: {
@@ -22,17 +28,15 @@ module.exports = {
       await dbHelpers.getReviewsSummary(restaurantId)
         .then((data) => {
           const reviewsSummary = {
-            ...data[0],
+            ...data.rows[0],
             reviewsFilters: [
-              data[0].review_filter_1,
-              data[0].review_filter_2,
-              data[0].review_filter_3,
-              data[0].review_filter_4,
-              data[0].review_filter_5,
+              "Burgers",
+              "Burritos",
+              "Pizzas",
+              "Tacos",
+              "Sandwiches"
             ],
           };
-          for (let i = 1; i <= 5; i += 1) { delete reviewsSummary[`review_filter_${i}`]; }
-
           res.status(200).send(reviewsSummary);
         })
         .catch((err) => { console.error(err); });

@@ -1,7 +1,7 @@
 module.exports = {
-  host: '54.241.156.4',
+  host: '52.53.211.190',
   port: 5432,
-  user: 'Iris',
+  user: 'postgres',
   database: 'tableit',
   password: '',
 };

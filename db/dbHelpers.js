@@ -7,7 +7,7 @@ module.exports = {
       u.username,
       u.user_initials,
       u.user_city,
-      u.review_count
+      u.user_total_reviews
     FROM reviews_detail rd
     JOIN users u
       ON rd.user_id = u.id
@@ -23,7 +23,7 @@ module.exports = {
     return db.query(query)
       .then(() => db.query(`
       UPDATE users u
-      SET review_count = review_count + 1
+      SET user_total_reviews = user_total_reviews + 1
       WHERE id = ${newReview.user_id}
     `));
   },

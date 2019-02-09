@@ -81,7 +81,7 @@ mongoimport --db testtable --collection users --type csv --file /Users/Iris/mart
 
 
 UPDATE users u
-SET review_count = user_total_reviews
+SET user_total_reviews = user_total_reviews
 FROM (
   SELECT
     user_id,

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '../../styles/summary/SummaryBarChartRow.css';
 
 const SummaryBarChartRow = (props) => {
+  console.log(props.reviews)
   const totalReviewsCount = props.reviews.length;
   const scoreReviewsCount = props.reviews.filter(review => (review.overall_score === props.score)).length;
   const scorePct = scoreReviewsCount / totalReviewsCount || 0;

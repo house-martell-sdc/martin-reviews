@@ -29,7 +29,10 @@
 //       }
 //     }
 //   ])
-  
+   async function exmaple () {
+     const data = await asyncFunction()
+     console.log(data)
+   }
 //   for (let i = 0; i < reviews.length; i++) {
 //     await db.collection('users').update({_id: reviews[i]._id}, {
 //       $set: {
@@ -38,7 +41,7 @@
 //     })
 //   }
 
-//   await client.close();
+//   client.close();
 // })
 
 
